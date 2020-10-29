@@ -20,6 +20,8 @@ pacman = vector(-40, -80)
 
 #Arreglo con las posiciones iniciales y movimientos iniciales
     #de cada fantasma
+#Se puede hacer a los fantasmas más rápidos haciendo que su
+    #movimiento, en lugar de ser de 5 en 5 sea de 10 en 10
 ghosts = [
     [vector(-180, 160), vector(10, 0)],
     [vector(-180, -160), vector(0, 10)],
