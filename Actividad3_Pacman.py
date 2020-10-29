@@ -165,24 +165,69 @@ def move():
     goto(pacman.x + 10, pacman.y + 10)
     dot(20, 'yellow')
 
+    #Vector de opciones de posibles movimientos
+    options = [
+                    vector(10, 0),
+                    vector(-10, 0),
+                    vector(0, 10),
+                    vector(0, -10),
+                ]
+    
     #Recorre cada elemento del arreglo de fantasmas
     for point, course in ghosts:
-        #Si el siguiente movimiento del fantasma es válido
-            #continua movíendose
-        if valid(point + course):
-            point.move(course)
+        #Para hacer a los fantasmas más inteligentes se decidió que
+            #Si se encuentras en la msima posición en en Y o en X
+            #determinen si pacman se encuentra a su derecha 
+            #o izquierda, arriba o abajo, y se muevan para
+        if pacman.y == point.y :
+            #Si están a la misma altura
+                #Determina si está a la izquierda o derecha para
+                #cambiar el curso
+            if pacman.x > point.x:
+                course.x = 10
+                course.y = 0
+            elif pacman.x < point.x:
+                course.x = -10
+                course.y = 0
+            
+            #Si es un movimiento válido lo ejecuta
+            if valid(point + course):
+                point.move(course)
+            else:
+                #Si no es válido, escoge un movimiento al azar
+                plan = choice(options)
+                course.x = plan.x
+                course.y = plan.y
+                    
+
+        elif pacman.x == point.x:
+            #Si están en la misma posición en x determina si
+                #pacman está arriba o abajo para moverse
+            if pacman.y > point.y:
+                course.y = 10
+                course.x = 0
+            elif pacman.y < point.y:
+                course.y = -10
+                course.x = 0
+            
+            #Si es un moviento válido lo ejecuta
+            if valid(point + course):
+                point.move(course)
+            else:
+                #Si no es válido, escoge un moviento al azar
+                plan = choice(options)
+                course.x = plan.x
+                course.y = plan.y
+        
+        #Si no cumple ninguna de las 2 condiciones, se moverá
+                #con libertad
         else:
-            #De otra manera, escogerá un moviento al azar
-                #de la lista de opciones
-            options = [
-                vector(5, 0),
-                vector(-5, 0),
-                vector(0, 5),
-                vector(0, -5),
-            ]
-            plan = choice(options)
-            course.x = plan.x
-            course.y = plan.y
+            if valid(point + course):
+                point.move(course)
+            else:
+                plan = choice(options)
+                course.x = plan.x
+                course.y = plan.y
 
         #Toma la posición a la mitad de la casilla del fantastma
             #y lo dibuja usando dot
