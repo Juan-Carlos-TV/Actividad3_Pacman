@@ -1,3 +1,6 @@
+#Juan Carlos Triana Vela A00827629
+#Enrique Jose Garcia A00827858
+
 from random import choice
 from turtle import *
 from freegames import floor, vector
@@ -18,10 +21,10 @@ pacman = vector(-40, -80)
 #Arreglo con las posiciones iniciales y movimientos iniciales
     #de cada fantasma
 ghosts = [
-    [vector(-180, 160), vector(5, 0)],
-    [vector(-180, -160), vector(0, 5)],
-    [vector(100, 160), vector(0, -5)],
-    [vector(100, -160), vector(-5, 0)],
+    [vector(-180, 160), vector(10, 0)],
+    [vector(-180, -160), vector(0, 10)],
+    [vector(100, 160), vector(0, -10)],
+    [vector(100, -160), vector(-10, 0)],
 ]
 
 #Arreglo que representa el tablero.
